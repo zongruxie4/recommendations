@@ -26,13 +26,12 @@
 ## EC2
 
  * An application hosted on an EC2 machine should be fully functioning following boot, or restart without human intervention.
+ * Avoid installing dependencies (e.g. Java) at instance launch-time. Use [AMIgo](https://amigo.gutools.co.uk/) to install them when AMIs are created instead. This ensures that deployments, instance replacements and scale-up events are faster, as well as making them more reliable, deterministic and secure.
+ * Ensure that instances are kept up to date with new AMIgo AMIs using Riff-Raff scheduled deploys.
  * Always create EC2 machines in autoscaling groups, even if that group has a minimum and maximum size of 1.
  * Use ELB healthchecks even if the app has no other HTTP endpoints, as other healthchecks are very limited.
  * Autoscaling groups should span all availability zones in a region.
  * EC2 security groups should not have globally open ports.
- * Use AMIs baked by Amigo.
- * Ensure that instances are kept up to date with new AMIs using Riff Raff scheduled deploys.
-
 
 ## VPC
 
